@@ -7,6 +7,16 @@
 
 import SwiftUI
 import SwiftData
+import Firebase
+
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+    return true
+  }
+}
 
 @main
 struct Dev_FunApp: App {
@@ -22,10 +32,12 @@ struct Dev_FunApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
-
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack{
+                RootView()
+            }
         }
         .modelContainer(sharedModelContainer)
     }
