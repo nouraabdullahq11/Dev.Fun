@@ -28,56 +28,56 @@ struct Rock: View {
     
     let questions = [
         QuestionModel(
-            prompt: "\nWhat is\nGamification?",
-            choices: [" Used to access resources", "A programming language", "Video games for educational purposes"],
+            prompt: "Gamification in software development is..",
+            choices: [" Motivates users with game elements", "A programming language", "User-friendly design"],
             correctIndex: 0,
             hint: "this a hint. test"
         ),
         QuestionModel(
-            prompt: "What's the purpose of an App Store Product Page?",
-            choices: ["To provide customer support for the app", "To showcase an app's features and encourage downloads", "To track user behavior within the app"],
-            correctIndex: 1,
+            prompt: "Purpose of an App Store Product Page is..",
+            choices: ["Customer support for the app.", "Showcases app features for downloads", "To track user behavior within the app"],
+           correctIndex: 1,
             hint: "this a hint1. test"
         ),
         QuestionModel(
             prompt: "What is an app icon?",
-            choices: ["It's a hidden feature of an app", "It's a type of programming language", "t's a visual symbol representing an app on a device's screen"],
-            correctIndex: 2,
+            choices: ["Hidden feature", "App symbol ", "Programming type."],
+            correctIndex: 1,
             hint: "this a hint2. test"
         ),
         QuestionModel(
-            prompt: "What is usability testing in software development?",
-            choices: ["It's a method for improving the app's performance", "Evaluate how user-friendly a software or app is, involving real users", "It's a type of software debugging"],
-            correctIndex: 1,
+            prompt: "Usability testing in software development is ..",
+            choices: ["Boosts performance", "User test", "Debugging"],
+             correctIndex: 1,
             hint: "this a hint3. test"
         ),
         QuestionModel(
-            prompt: "What are Comparative and Competitive (C&C) analyses in business?",
-            choices: ["They are marketing strategies for increasing customer loyalty", "They are financial reports used for tax purposes", "Strategic tools used to evaluate a company's position relative to its competitor"],
-            correctIndex: 2,
+            prompt: "What is (C&C) analyses in business?",
+            choices: ["Tak Reports", "Loyalty Strategy", "Strategic tools used to Market evaluation."],
+           correctIndex: 2,
             hint: "this a hint4. test"
         ),
         QuestionModel(
             prompt: "What is URL in web development?",
             choices: ["Used to access resources", "A programming language", "A website design tool"],
-            correctIndex: 0,
+          correctIndex: 0,
             hint: "this a hint4. test"
         ),
         QuestionModel(
             prompt: "What is JSON in web development?",
-            choices: ["A web browser", "A web development framework", "A format often used to structure data retrieved from a URL"],
+            choices: ["A web browser", "A web development framework", "A Data structuring from a URL"],
             correctIndex: 2,
             hint: "this a hint4. test"
         ),
         QuestionModel(
-            prompt: "What is the purpose of async-await in programming?",
-            choices: ["simplifies arithmetic calculations","Handles asynchronous operations"," Manages memory allocation"],
+            prompt: "Purpose of async-await in programming is..",
+            choices: ["simplifies arithmetic calculations","Handles Asynchronous Operations"," Manages Memory aAllocation"],
             correctIndex: 1,
             hint: "this a hint4. test"
         ), QuestionModel(
-            prompt: "What is a closure and how is it used in programming?",
-            choices: ["allow functions to access external variables","Prevent access to external variables","Control program flow"],
-            correctIndex: 0,
+            prompt: "Closure in programming is..",
+            choices: ["Allow Functions to Access Variables","Prevent Access to External Variables","Control Program Flow"],
+           correctIndex: 0,
             hint: "this a hint4. test"
         )
     ]
