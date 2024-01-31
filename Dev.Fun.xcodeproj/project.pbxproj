@@ -31,6 +31,7 @@
 		A20B54812B662F38003350F8 /* PathWays.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20B54802B662F38003350F8 /* PathWays.swift */; };
 		A20B54832B663672003350F8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A20B54822B663672003350F8 /* FirebaseFirestore */; };
 		A20B54852B66367C003350F8 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = A20B54842B66367C003350F8 /* FirebaseDatabase */; };
+		A213E5582B6A268E00737EBA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A213E5572B6A268E00737EBA /* ProfileView.swift */; };
 		A2BD51432B65050800047A9F /* CurrentBridgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD51422B65050800047A9F /* CurrentBridgeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		A20B547C2B662DA4003350F8 /* RockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockView.swift; sourceTree = "<group>"; };
 		A20B547E2B662EC1003350F8 /* FindYourPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindYourPath.swift; sourceTree = "<group>"; };
 		A20B54802B662F38003350F8 /* PathWays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathWays.swift; sourceTree = "<group>"; };
+		A213E5572B6A268E00737EBA /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A2BD51422B65050800047A9F /* CurrentBridgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentBridgeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +117,7 @@
 				A20B547C2B662DA4003350F8 /* RockView.swift */,
 				A20B547E2B662EC1003350F8 /* FindYourPath.swift */,
 				A20B54802B662F38003350F8 /* PathWays.swift */,
+				A213E5572B6A268E00737EBA /* ProfileView.swift */,
 			);
 			path = Dev.Fun;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				14E0D2122B6258F6005B9551 /* ContentView.swift in Sources */,
 				14E0D2312B625A00005B9551 /* AuthenticationManager.swift in Sources */,
 				A20B54812B662F38003350F8 /* PathWays.swift in Sources */,
+				A213E5582B6A268E00737EBA /* ProfileView.swift in Sources */,
 				14E0D2142B6258F6005B9551 /* Item.swift in Sources */,
 				14E0D2352B625A3C005B9551 /* AuthenticationView.swift in Sources */,
 				A20B547D2B662DA4003350F8 /* RockView.swift in Sources */,

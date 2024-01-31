@@ -79,7 +79,8 @@ struct SettingsView: View {
       @State private var alertMessage: String = ""
       @State private var showSuccessAlert: Bool = false
     @State private var Title: String = ""
-    
+    @State private var isChangePasswordViewPresented: Bool = false
+
     
     var body: some View {
         NavigationView {
@@ -106,41 +107,47 @@ struct SettingsView: View {
                         )
                 }.padding()
                 Button("Save") {
-                    if newPassword == confirmPassword && isPasswordValid(newPassword) {
-                                            Task {
-                                                do {
-                                                    try await updatePassword(email: "user@example.com", newPassword: newPassword)
-                                                    showAlert = true
-                                                    alertMessage = "Password successfully updated!"
-                                                    Title = "done"
-                                                } catch {
-                                                    showAlert = true
-                                                    alertMessage = "Error updating password: \(error)"
-                                                    Title = "error"
-                                                }
+                                    if !isChangePasswordViewPresented && newPassword == confirmPassword && isPasswordValid(newPassword) {
+                                        Task {
+                                            do {
+                                                try await updatePassword(email: "user@example.com", newPassword: newPassword)
+                                                
+                                                // Set the flag to indicate that the view has been presented
+                                                isChangePasswordViewPresented = true
+
+                                                showAlert = true
+                                                alertMessage = "Password successfully updated!"
+                                                Title = "Done"
+                                            } catch {
+                                                showAlert = true
+                                                alertMessage = "Error updating password: \(error)"
+                                                Title = "Error"
                                             }
-                                        } else if newPassword != confirmPassword  {
-                                            Task {
-                                                do {
-                                                    try await updatePassword(email: "user@example.com", newPassword: newPassword)
-                                                    showAlert = true
-                                                    alertMessage = "Error updating password: "
-                                                    Title = "error"
-                                                } catch {
-                                                    showAlert = true
-                                                    alertMessage = "Error updating password: \(error)"
-                                                    Title = "error"
-                                                }
-                                            }
-                                        }else {
-                                            showAlert = true
-                                            alertMessage = "Password does not meet complexity requirements."
-                                            Title = "error"
                                         }
+                                    } else if newPassword != confirmPassword {
+                                        // Handle password mismatch error
+                                        showAlert = true
+                                        alertMessage = "Error updating password: Passwords do not match."
+                                        Title = "Error"
+                                    } else {
+                                        // Handle other password validity errors
+                                        showAlert = true
+                                        alertMessage = "Password does not meet complexity requirements."
+                                        Title = "Error"
+                                    }
                                 }
                                 .padding()
                                 .alert(isPresented: $showAlert) {
-                                    Alert(title: Text(Title), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                                    Alert(
+                                        title: Text(Title),
+                                        message: Text(alertMessage),
+                                        dismissButton: .default(Text("OK")) {
+                                            // If the password change was successful, navigate to ContentView
+                                            if Title == "Done" {
+                                                showSignInView = true
+                                            }
+                                        }
+                                    )
                                 }
 
 
@@ -148,16 +155,16 @@ struct SettingsView: View {
                 Text("User ID: \(settingsViewModel.userID)")
                 Text("User Name: \(settingsViewModel.userName)")
 
-                Button("Log out") {
-                    Task {
-                        do {
-                            try await settingsViewModel.signOut()
-                            showSignInView = true
-                        } catch {
-                            print(error)
-                        }
-                    }
-                }
+//                Button("Log out") {
+//                    Task {
+//                        do {
+//                            try await settingsViewModel.signOut()
+//                            showSignInView = true
+//                        } catch {
+//                            print(error)
+//                        }
+//                    }
+//                }
             }
             .navigationTitle("Change Password")
             .onAppear {

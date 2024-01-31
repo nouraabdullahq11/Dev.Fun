@@ -119,6 +119,7 @@ struct SigninEmailView: View {
                     .background(Color.black)
                     .cornerRadius(10)
             }.padding()
+               
             
             Button {
                 Task{

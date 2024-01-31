@@ -13,6 +13,9 @@ struct ContentView: View {
         let lockedImages: [String]
         let switchDate: Date
     }
+    @StateObject private var settingsViewModel = SettingsViewModel.shared // Use the shared instance
+
+    @State private var isViewShown: Bool = false
     @Environment(\.modelContext) private var modelContext
     let unlockedImages = ["scrollunlock1", "scrollunlock2", "scrollunlock3", "scrollunlock4", "scrollunlock5"]
     let currintImages = ["currentScroll1","currentScroll2","currentScroll3","currentScroll4","currentScroll5"]
@@ -25,112 +28,108 @@ struct ContentView: View {
     @State private var color: Color = .white
     var body: some View {
         NavigationView{
-        VStack{
+            VStack{
                 Text("✨ Good Job Farah ✨")
-                .font(
-                Font.custom("SF Pro", size: 13)
-                .weight(.bold))
-            // Adjust font size
-                .foregroundColor(color)
-                .scaleEffect(scale)
-                .frame(width: 346, height: 62, alignment: .center)
-                .background(Color(red: 0.04, green: 0.04, blue: 0.04))                .cornerRadius(15)
-                .onAppear {
-                    withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
-                        scale = 1.2
-                        color = .white
-                    }}
-            NavigationLink(destination: CurrentBridgeView()) {
-                ZStack(alignment: .init(horizontal: .center, vertical: .bottom)){
-                    Image ("Card2")
-                        .cornerRadius(33)
-                    Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(width: 346, height: 299)
-                    .background(
-                    LinearGradient(
-                    stops: [
-                    Gradient.Stop(color: Color(red: 0.48, green: 0.81, blue: 1).opacity(0.89), location: 0.00),
-                    Gradient.Stop(color: Color(red: 0.48, green: 0.81, blue: 1).opacity(0), location: 1.00),
-                    ],
-                    startPoint: UnitPoint(x: 0.5, y: 0),
-                    endPoint: UnitPoint(x: 0.5, y: 1)
-                    )
-                    )
-                    .cornerRadius(33)
-                    .offset(x:0)
-                    .offset(y:-76)
-                    
-                    HStack{
-                        Text("Current Bridge")
-                            .font(
-                                Font.custom("SF Pro", size: 28)
-                                    .weight(.bold)
+                    .font(
+                        Font.custom("SF Pro", size: 13)
+                            .weight(.bold))
+                // Adjust font size
+                    .foregroundColor(color)
+                    .scaleEffect(scale)
+                    .frame(width: 346, height: 62, alignment: .center)
+                    .background(Color(red: 0.04, green: 0.04, blue: 0.04))                .cornerRadius(15)
+                    .onAppear {
+                        withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
+                            scale = 1.2
+                            color = .white
+                        }}
+                NavigationLink(destination: CurrentBridgeView()){
+                    ZStack(alignment: .init(horizontal: .center, vertical: .bottom)){
+                        Image ("Card2")
+                            .cornerRadius(33)
+                        Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 346, height: 299)
+                            .background(
+                                LinearGradient(
+                                    stops: [
+                                        Gradient.Stop(color: Color(red: 0.48, green: 0.81, blue: 1).opacity(0.89), location: 0.00),
+                                        Gradient.Stop(color: Color(red: 0.48, green: 0.81, blue: 1).opacity(0), location: 1.00),
+                                    ],
+                                    startPoint: UnitPoint(x: 0.5, y: 0),
+                                    endPoint: UnitPoint(x: 0.5, y: 1)
+                                )
                             )
-                        Image(systemName: "arrow.right.circle")
+                            .cornerRadius(33)
+                            .offset(x:0)
+                            .offset(y:-76)
+                        
+                        HStack{
+                            Text("Current Bridge")
+                                .font(
+                                    Font.custom("SF Pro", size: 28)
+                                        .weight(.bold)
+                                )
+                            Image(systemName: "arrow.right.circle")
+                        }
+                        .background(
+                            (Color.black))
+                        .cornerRadius(17)
+                        .frame(width: 346, height: 100)
+                        .foregroundColor(.white)
+                        
                     }
-                    .background(
-                                                        (Color.black))
-                                                    .cornerRadius(17)
-                                                    .frame(width: 346, height: 100)
-                    .foregroundColor(.white)
-
                 }
-            }
-            HStack{
-                Text("Academy Arcade")
-                    .font(.system(size: 25))
-                    .fontWeight(.semibold)
-                    .foregroundColor(.black)
-            }.padding(.trailing,150)
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 10) {
-                    ForEach(imagesToDisplay.indices, id: \.self) { number in
-                        VStack {
-                            Image("\(imagesToDisplay[number])")
-                                .resizable()
-                                .clipShape(RoundedRectangle(cornerRadius: 24.0))
-                                .frame(width: 222, height: 124)
-
-                            Text("\(discribtion[number])")
-                                .font(Font.custom("SF Pro Text", size: 15)
-                                .weight(.semibold))
+                HStack{
+                    Text("Academy Arcade")
+                        .font(.system(size: 25))
+                        .fontWeight(.semibold)
+                        .foregroundColor(.black)
+                }.padding(.trailing,150)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(imagesToDisplay.indices, id: \.self) { number in
+                            VStack {
+                                Image("\(imagesToDisplay[number])")
+                                    .resizable()
+                                    .clipShape(RoundedRectangle(cornerRadius: 24.0))
+                                    .frame(width: 222, height: 124)
+                                
+                                Text("\(discribtion[number])")
+                                    .font(Font.custom("SF Pro Text", size: 15)
+                                        .weight(.semibold))
+                            }
                         }
                     }
+                    .padding(.horizontal, 20)
                 }
-                .padding(.horizontal, 20)
+                .onAppear {
+                    // Initial set of images when the view appears
+                    imagesToDisplay = getImagesToDisplay()
+                }
             }
-            .onAppear {
-                // Initial set of images when the view appears
-                imagesToDisplay = getImagesToDisplay()
-            }
+            .navigationBarItems(
+                leading: HStack {
+                    Text("Welcome Back 👋\(settingsViewModel.userName)")
+                        .font(.system(size: 25))
+                        .fontWeight(.semibold)
+                        .foregroundColor(.black)
+                        .offset(y:25)
+                        .offset(x:15)
+                },
+                trailing: HStack {
+                    NavigationLink(destination: ProfileView()){
+                        Image(systemName: "person.circle.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.black)
+                            .offset(y:25)
+                            .offset(x:-15)
+                        
+                    }
+                })
         }
-        .navigationBarItems(
-            leading: HStack {
-                Text("Welcome Back 👋")
-                    //.font(
-                       // Font.custom("SF Pro", size: 25)
-                        //    .weight(.semibold))
-                    //.foregroundColor(.black)
-                    .font(.system(size: 25))
-                    .fontWeight(.semibold)
-                    .foregroundColor(.black)
-                    .offset(y:25)
-                    .offset(x:15)
-            },
-            trailing: HStack {
-                Image(systemName: "person.circle.fill") // Replace with your profile icon
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.black)
-                    .offset(y:25)
-                    .offset(x:-15)
-              
-            }
-        )
     }
-}
-
 func getImagesToDisplay() -> [String] {
     let currentDate = Date()
 
