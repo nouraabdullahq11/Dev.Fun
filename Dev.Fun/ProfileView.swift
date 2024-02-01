@@ -20,30 +20,8 @@ struct TeammatesView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                Text("Teammates in \(team.name):")
-                    .font(.title2)
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .foregroundColor(isTeamNameTapped ? Color.white : Color.primary)
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(isTeamNameTapped ? Color(red: 0, green: 0.53, blue: 0.79) : Color.clear)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.primary, lineWidth: 1) // Add a border for visual connection
-                            )
-                    )
-                    .onTapGesture {
-                        withAnimation {
-                            isTeamNameTapped.toggle()
-                        }
-                    }
-            }
-
             if isTeamNameTapped {
                 Divider()
-
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(team.teammates, id: \.memojiImageName) { teammate in
@@ -87,38 +65,10 @@ struct ProfileView: View {
     @State private var newName: String = ""
     @State private var newBio: String = ""
     @State private var isSheetPresented = false
-    
-    let teams: [Team] = [
-        Team(name: "Team A", teammates: [
-            Teammate(memojiImageName: "john_memoji"),
-            Teammate(memojiImageName: "jane_memoji"),
-            Teammate(memojiImageName: "bob_memoji"),
-        ]),
-        Team(name: "Team B", teammates: [
-            Teammate(memojiImageName: "alice_memoji"),
-            Teammate(memojiImageName: "charlie_memoji"),
-            Teammate(memojiImageName: "david_memoji"),
-        ]),
-        Team(name: "Team v", teammates: [
-            Teammate(memojiImageName: "alice_memoji"),
-            Teammate(memojiImageName: "charlie_memoji"),
-            Teammate(memojiImageName: "david_memoji"),
-        ]),
-    ]
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
         NavigationView {
             VStack {
-                Button("Log out") {
-                    Task {
-                        do {
-                            try await settingsViewModel.signOut()
-                            RootView().onAppear()
-                           
-                        } catch {
-                            print(error)
-                        }
-                    }
-                }
                 profilePicture
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -147,31 +97,43 @@ struct ProfileView: View {
                     }.sheet(isPresented: $isEditingProfile) {
                         EditProfileView(name: $name, bio: $bio, profilePicture: $profilePicture)
                     }
-//                Text(name)
                 Text(settingsViewModel.userName)
                     .font(.title)
                     .padding()
-                
-//                Text(bio)
                 Text("Front-end Devolper intrested in Arts and Craft")
                     .padding()
-            
-                ForEach(teams, id: \.name) { team in
-                    TeammatesView(team: team)
+                HStack{
+                    Button {
+                        isSheetPresented.toggle()
+                    } label: {
+                        Image(systemName: "key")
+                            .font(.title)
+                            .foregroundColor(.blue)
+                        Text("Change the password")
+                    }
+                    .padding()
+                    .sheet(isPresented: $isSheetPresented) {
+                        NavigationView {
+                            SettingsView(showSignInView: .constant(false))
+                        }
+                    }
+                    Button {
+                        Task {
+                            do {
+                                try await settingsViewModel.signOut()
+                                presentationMode.wrappedValue.dismiss()
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            Text("Logout")
+                        }
+                        .foregroundColor(.red) // Customize the color if needed
                         .padding()
+                    }
                 }
-                
-                
-                Button("Show Sheet") {
-                              isSheetPresented.toggle()
-                          }
-                          .sheet(isPresented: $isSheetPresented) {
-                              // Embed the sheet content in a NavigationView
-                              NavigationView {
-                                  SettingsView(showSignInView: .constant(false))
-                              }
-                          }
-                
                 
             }
             .navigationBarTitleDisplayMode(.inline)

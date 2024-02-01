@@ -151,7 +151,7 @@ struct SettingsView: View {
                                 }
 
 
-                Spacer()
+//                Spacer()
                 Text("User ID: \(settingsViewModel.userID)")
                 Text("User Name: \(settingsViewModel.userName)")
 

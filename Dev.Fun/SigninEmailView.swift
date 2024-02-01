@@ -8,10 +8,11 @@ import SwiftUI
 
 @MainActor
 final class SigninEmailViewModel: ObservableObject{
-    
+
     @Published var email = ""
     @Published var password = ""
     @Published var firstName = ""  // New property for capturing the user's name
+
     func signIn() async throws {
             guard !email.isEmpty, !password.isEmpty else {
                 print("No email or password found.")
@@ -43,8 +44,6 @@ final class SigninEmailViewModel: ObservableObject{
             }
         }
     }
-
-    
     func restPassword() async throws {
         let authUser = try await AuthenticationManager.shared.getAuthenticatedUser()
         
@@ -63,12 +62,7 @@ struct SigninEmailView: View {
     
     @StateObject private var viewModel = SigninEmailViewModel()
     @Binding var showSignInView: Bool
-    /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// ///
-    ///
-    ///
-    /// /
-    ///
-    //
+ 
     @State private var isShowingForgetPasswordSheet = false
        @State private var resetPasswordEmail = ""
        @State private var isResetPasswordSuccessAlertPresented = false
@@ -99,38 +93,8 @@ struct SigninEmailView: View {
                     .stroke(.black, lineWidth: 1)
                     )
             }                    .padding()
-            Button {
-                Task{
-                    do{
-                        try await  viewModel.signIn()
-                        showSignInView = false
-                        return
-                    }catch {
-                        print(error)
-                    }
-                }
-            }label: {
-                
-                Text("Sign In")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(height: 40)
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    .background(Color.black)
-                    .cornerRadius(10)
-            }.padding()
-               
-            
-            Button {
-                Task{
-                    do{
-                        try await  viewModel.signUp()
-                        showSignInView = false
-                        return
-                    }catch {
-                        print(error)
-                    }
-                    
+//            Button {
+//                Task{
 //                    do{
 //                        try await  viewModel.signIn()
 //                        showSignInView = false
@@ -138,17 +102,97 @@ struct SigninEmailView: View {
 //                    }catch {
 //                        print(error)
 //                    }
-                }
-            }label: {
-                
-                Text("Sign Up")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(height: 55)
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    .background(Color.blue)
-                    .cornerRadius(10)
+//                }
+//            }label: {
+//                
+//                Text("Sign In")
+//                    .font(.headline)
+//                    .foregroundColor(.white)
+//                    .frame(height: 40)
+//                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+//                    .background(Color.black)
+//                    .cornerRadius(10)
+//            }.padding()
+//               
+//            
+//            Button {
+//                Task{
+//                    do{
+//                        try await  viewModel.signUp()
+//                        showSignInView = false
+//                        return
+//                    }catch {
+//                        print("غلطططط\(error)")
+//                    }
+//                    
+////                    do{
+////                        try await  viewModel.signIn()
+////                        showSignInView = false
+////                        return
+////                    }catch {
+////                        print(error)
+////                    }
+//                }
+//            }label: {
+//                
+//                Text("Sign Up")
+//                    .font(.headline)
+//                    .foregroundColor(.white)
+//                    .frame(height: 55)
+//                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+//                    .background(Color.blue)
+//                    .cornerRadius(10)
+//            }
+            Button {
+            Task{
+            do{
+            guard !viewModel.email.isEmpty, !viewModel.password.isEmpty else {
+            print("Email or password is empty.")
+            return
             }
+
+                                       try await viewModel.signIn()
+                                       showSignInView = false
+                                   } catch {
+                                       print(error)
+                                   }
+                               }
+                           }label: {
+                               Text("Sign In")
+                                   .font(.headline)
+                                   .foregroundColor(.white)
+                                   .frame(height: 40)
+                                   .frame(maxWidth: .infinity)
+                                   .background(Color.black)
+                                   .cornerRadius(10)
+                           }
+                           .padding()
+                           .disabled(viewModel.email.isEmpty || viewModel.password.isEmpty) // Disable if email or password is empty
+
+                           Button {
+                               Task{
+                                   do{
+                                       guard !viewModel.email.isEmpty, !viewModel.password.isEmpty, !viewModel.firstName.isEmpty else {
+                                           print("Email, password, or name is empty.")
+                                           return
+                                       }
+
+                                       try await viewModel.signUp()
+                                       showSignInView = false
+                                   } catch {
+                                       print(error)
+                                   }
+                               }
+                           }label: {
+                               Text("Sign Up")
+                                   .font(.headline)
+                                   .foregroundColor(.white)
+                                   .frame(height: 55)
+                                   .frame(maxWidth: .infinity)
+                                   .background(Color.blue)
+                                   .cornerRadius(10)
+                           }
+                           .disabled(viewModel.email.isEmpty || viewModel.password.isEmpty || viewModel.firstName.isEmpty) // Disable if email, password, or name is empty
             
             Button {
                             isShowingForgetPasswordSheet = true

@@ -14,7 +14,6 @@ struct ContentView: View {
         let switchDate: Date
     }
     @StateObject private var settingsViewModel = SettingsViewModel.shared // Use the shared instance
-
     @State private var isViewShown: Bool = false
     @Environment(\.modelContext) private var modelContext
     let unlockedImages = ["scrollunlock1", "scrollunlock2", "scrollunlock3", "scrollunlock4", "scrollunlock5"]
@@ -29,7 +28,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             VStack{
-                Text("✨ Good Job Farah ✨")
+                Text("✨ Good Job \(settingsViewModel.userName) ✨")
                     .font(
                         Font.custom("SF Pro", size: 13)
                             .weight(.bold))
@@ -110,7 +109,7 @@ struct ContentView: View {
             }
             .navigationBarItems(
                 leading: HStack {
-                    Text("Welcome Back 👋\(settingsViewModel.userName)")
+                    Text("Welcome Back \(settingsViewModel.userName)")
                         .font(.system(size: 25))
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
