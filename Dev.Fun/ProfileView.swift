@@ -14,14 +14,37 @@ struct Teammate {
     let memojiImageName: String // Image asset name for Memoji
 }
 
+
 struct TeammatesView: View {
     let team: Team
     @State private var isTeamNameTapped = false
 
     var body: some View {
         VStack {
+            HStack {
+                Text("\(team.name)")
+                    .font(.title2)
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .foregroundColor(isTeamNameTapped ? Color.white : Color.primary)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(isTeamNameTapped ? Color(red: 0, green: 0.53, blue: 0.79) : Color.clear)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.primary, lineWidth: 1) // Add a border for visual connection
+                            )
+                    )
+                    .onTapGesture {
+                        withAnimation {
+                            isTeamNameTapped.toggle()
+                        }
+                    }
+            }
+
             if isTeamNameTapped {
                 Divider()
+
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(team.teammates, id: \.memojiImageName) { teammate in
@@ -51,13 +74,29 @@ struct TeammatesView: View {
     }
 }
 
+
 struct ProfileView: View {
+    
+    let teams: [Team] = [
+        Team(name: "MC2", teammates: [
+            Teammate(memojiImageName: "john_memoji"),
+            Teammate(memojiImageName: "22"),
+            Teammate(memojiImageName: "image1"),
+        ]),
+        Team(name: "NC1", teammates: [
+            Teammate(memojiImageName: "image1"),
+            Teammate(memojiImageName: "22"),
+            Teammate(memojiImageName: "Image"),
+        ]),
+        // Add more teams as needed
+    ]
+
     @StateObject private var settingsViewModel = SettingsViewModel.shared // Use the shared instance
  
 
 //     @State private var showChangePasswordView = false
     // @StateObject private var viewModel = SettingsViewModel()
-    @State private var profilePicture: Image = Image(systemName: "person.circle")
+    @State private var profilePicture: Image = Image("profile image ")
     @State private var showImagePicker: Bool = false
     @State private var name: String = "John Doe"
     @State private var bio: String = "I love SwiftUI!"
@@ -72,7 +111,7 @@ struct ProfileView: View {
                 profilePicture
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 150, height: 150)
+                    .frame(width: 200, height: 200)
                     .clipShape(Circle())
                     .overlay(
                         Circle()
@@ -88,7 +127,7 @@ struct ProfileView: View {
                                         .foregroundColor(.white)
                                         .clipShape(Circle())
                                 }
-                                    .offset(x: 50, y: 50)
+                                    .offset(x: 50, y: 90)
                                     .opacity(isEditingProfile ? 0 : 1)
                             )
                     )
@@ -97,11 +136,22 @@ struct ProfileView: View {
                     }.sheet(isPresented: $isEditingProfile) {
                         EditProfileView(name: $name, bio: $bio, profilePicture: $profilePicture)
                     }
-                Text(settingsViewModel.userName)
+                Text("\(settingsViewModel.userName) 👋")
                     .font(.title)
-                    .padding()
-                Text("Front-end Devolper intrested in Arts and Craft")
-                    .padding()
+                    //.padding()
+                Text(bio)
+                   // .padding()
+                
+                
+                VStack {
+                    ForEach(teams, id: \.name) { team in
+                        TeammatesView(team: team)
+                            .padding()
+                    }
+
+                    // Your main content here
+                }
+                
                 HStack{
                     Button {
                         isSheetPresented.toggle()
@@ -138,6 +188,9 @@ struct ProfileView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
 
+            
+            
+            
         }
     }
 }
@@ -164,7 +217,7 @@ struct EditProfileView: View {
                     .sheet(isPresented: $showImagePicker) {
                         ImagePickerView(selectedImage: $selectedImage)
                     }
-
+                     
                 TextField("Name", text: $name)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -230,6 +283,8 @@ struct ImagePickerView: UIViewControllerRepresentable {
         // Update UI if needed
     }
 }
+
+
 
 extension Color {
     static func appleThemeRandom() -> Color {
