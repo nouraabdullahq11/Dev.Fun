@@ -35,7 +35,7 @@ struct ContentView: View {
 //                        .font(
 //                            Font.custom("SF Pro", size: 10)
 //                                .weight(.bold))
-                        .font(.system(size: 15))
+                        .font(.system(size: 20))
 
                     // Adjust font size
                         .foregroundColor(Color("let'sRockColor"))
@@ -49,11 +49,11 @@ struct ContentView: View {
                                 
                             }}
                        } else {
-                           Text("let's rock \(settingsViewModel.userName)🚀")
+                           Text(" let's Play  \(settingsViewModel.userName)🎯")
 //                               .font(
 //                                   Font.custom("SF Pro", size: 10)
 //                                       .weight(.bold))
-                               .font(.system(size: 15))
+                               .font(.system(size: 20))
 
                            // Adjust font size
                                .foregroundColor(Color("let'sRockColor"))
@@ -140,7 +140,7 @@ struct ContentView: View {
                 leading: HStack {
                     Text("Welcome Back \(settingsViewModel.userName)")
                         .font(.system(size: 25))
-//                        .fontWeight(.semibold)
+//                         .fontWeight(.bold)
                         .foregroundColor(
                             colorScheme == .dark ? Color.white : Color.black
                         )

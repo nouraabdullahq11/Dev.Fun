@@ -74,6 +74,10 @@ struct SigninEmailView: View {
 //                                .padding()
 //                                .background(Color.gray.opacity(0.4))
 //                                .cornerRadius(10)
+                Text("Welcome 👋")
+                    .font(.system(size: 30))
+                    .fontWeight(.bold)
+                    .offset(y:-30)
                       Text("Learner Email:")
                 TextField("yourName23 @ twq.idserver.net", text: $viewModel.email )
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -83,10 +87,12 @@ struct SigninEmailView: View {
                           )
                   }
                   .padding()
+                  .offset(y:30)
+                  
         
             VStack(alignment: .leading){
                 Text("One-time Password:")
-                SecureField("Default Passcode...", text: $viewModel.password )
+                SecureField("Default Passcode..", text: $viewModel.password )
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -220,7 +226,11 @@ struct SigninEmailView: View {
             
         }
         .padding()
-        .navigationTitle("Welcome 👋")
+//        .navigationTitle("Welcome 👋")
+      
+        
+      
+        
     }
 }
 

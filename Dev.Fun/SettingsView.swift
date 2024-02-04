@@ -95,7 +95,8 @@ struct SettingsView: View {
                                 .stroke(.black, lineWidth: 1)
                         )
                 }.padding()
-
+                    .offset(y:20)
+                    
                 VStack(alignment: .leading) {
                     Text("Reenter Password")
                     SecureField("Confirm Password", text: $confirmPassword)
