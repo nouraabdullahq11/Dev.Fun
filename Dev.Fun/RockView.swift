@@ -20,7 +20,8 @@ struct RockView: View {
         NavigationStack{
             
             ZStack{
-                Color(hex: "0088CA").ignoresSafeArea()
+               // Color(hex: "0088CA").ignoresSafeArea()
+                Color("DarkModeRock").ignoresSafeArea()
                 
                 
                 VStack{  NavigationLink(destination: ContentView(buttonTapped: buttonTapped)) {
@@ -47,7 +48,8 @@ struct RockView: View {
             }
             .navigationBarBackButtonHidden(true)
             .frame(width: 393, height: 852)
-            .background(Color(hex: "0088CA").ignoresSafeArea())
+//            .background(Color(hex: "0088CA").ignoresSafeArea())
+            .background(Color("DarkModeRock"))
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
                     Button(action: {
