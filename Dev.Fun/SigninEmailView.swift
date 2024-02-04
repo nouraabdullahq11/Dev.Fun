@@ -66,7 +66,7 @@ struct SigninEmailView: View {
     @State private var isShowingForgetPasswordSheet = false
        @State private var resetPasswordEmail = ""
        @State private var isResetPasswordSuccessAlertPresented = false
-    
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         VStack{
             VStack(alignment: .leading){
@@ -160,10 +160,15 @@ struct SigninEmailView: View {
                            }label: {
                                Text("Sign In")
                                    .font(.headline)
-                                   .foregroundColor(.white)
+                                  // .foregroundColor(.white)
                                    .frame(height: 40)
                                    .frame(maxWidth: .infinity)
-                                   .background(Color.black)
+                                   .background(
+                                                       colorScheme == .dark ? Color.white : Color.black
+                                                   )
+                                                   .foregroundColor(
+                                                       colorScheme == .dark ? Color.black : Color.white
+                                                   )
                                    .cornerRadius(10)
                            }
                            .padding()

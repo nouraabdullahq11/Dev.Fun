@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14A1D81C2B6B9A7D00F2F0C7 /* rock1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 14A1D81B2B6B9A7D00F2F0C7 /* rock1.gif */; };
 		14E0D2102B6258F6005B9551 /* Dev_FunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E0D20F2B6258F6005B9551 /* Dev_FunApp.swift */; };
 		14E0D2122B6258F6005B9551 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E0D2112B6258F6005B9551 /* ContentView.swift */; };
 		14E0D2142B6258F6005B9551 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E0D2132B6258F6005B9551 /* Item.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14A1D81B2B6B9A7D00F2F0C7 /* rock1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rock1.gif; sourceTree = "<group>"; };
 		14E0D20C2B6258F6005B9551 /* Dev.Fun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dev.Fun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14E0D20F2B6258F6005B9551 /* Dev_FunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dev_FunApp.swift; sourceTree = "<group>"; };
 		14E0D2112B6258F6005B9551 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				14E0D21A2B6258F7005B9551 /* Dev_Fun.entitlements */,
 				14E0D21B2B6258F7005B9551 /* Info.plist */,
 				14E0D2172B6258F7005B9551 /* Preview Content */,
+				14A1D81B2B6B9A7D00F2F0C7 /* rock1.gif */,
 				A20B54782B662D72003350F8 /* Rock.swift */,
 				A20B547A2B662D8D003350F8 /* BattleGame.swift */,
 				A20B547C2B662DA4003350F8 /* RockView.swift */,
@@ -209,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14E0D23A2B625B3B005B9551 /* GoogleService-Info.plist in Resources */,
+				14A1D81C2B6B9A7D00F2F0C7 /* rock1.gif in Resources */,
 				14E0D2192B6258F7005B9551 /* Preview Assets.xcassets in Resources */,
 				14E0D2162B6258F7005B9551 /* Assets.xcassets in Resources */,
 			);

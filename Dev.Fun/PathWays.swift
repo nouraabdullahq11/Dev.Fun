@@ -203,7 +203,8 @@ struct ResultView: View {
     var backendPoints: Int
     var resetAction: () -> Void
     @State private var navigateToHome = false
-    
+    @State private var buttonTapped = false
+
     var body: some View {
         ZStack {
             Color(.black).ignoresSafeArea()
@@ -393,7 +394,7 @@ struct ResultView: View {
 
 
                 
-            NavigationLink (destination: ContentView().navigationBarBackButtonHidden(true) ) {
+            NavigationLink (destination: ContentView(buttonTapped: buttonTapped).navigationBarBackButtonHidden(true) ){
                     HStack {
                         Image("x")
                             .font(

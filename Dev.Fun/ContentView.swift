@@ -25,23 +25,45 @@ struct ContentView: View {
     @Query private var items: [Item]
     @State private var scale: CGFloat = 1
     @State private var color: Color = .white
+    var buttonTapped: Bool
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         NavigationView{
             VStack{
-                Text("✨ Good Job \(settingsViewModel.userName) ✨")
-                    .font(
-                        Font.custom("SF Pro", size: 13)
-                            .weight(.bold))
-                // Adjust font size
-                    .foregroundColor(color)
-                    .scaleEffect(scale)
-                    .frame(width: 346, height: 62, alignment: .center)
-                    .background(Color(red: 0.04, green: 0.04, blue: 0.04))                .cornerRadius(15)
-                    .onAppear {
-                        withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
-                            scale = 1.2
-                            color = .white
-                        }}
+                
+                
+                if buttonTapped {
+                    Text("✨ Good Job \(settingsViewModel.userName) ✨")
+                        .font(
+                            Font.custom("SF Pro", size: 13)
+                                .weight(.bold))
+                    // Adjust font size
+                        .foregroundColor(color)
+                        .scaleEffect(scale)
+                        .frame(width: 346, height: 62, alignment: .center)
+                        .background(Color(red: 0.04, green: 0.04, blue: 0.04))                .cornerRadius(15)
+                        .onAppear {
+                            withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
+                                scale = 1.2
+                                color = .white
+                            }}
+                       } else {
+                           Text("✨ let's rock \(settingsViewModel.userName) ✨")
+                               .font(
+                                   Font.custom("SF Pro", size: 13)
+                                       .weight(.bold))
+                           // Adjust font size
+                               .foregroundColor(color)
+                               .scaleEffect(scale)
+                               .frame(width: 346, height: 62, alignment: .center)
+                               .background(Color(red: 0.04, green: 0.04, blue: 0.04))                .cornerRadius(15)
+                               .onAppear {
+                                   withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
+                                       scale = 1.2
+                                       color = .white
+                                   }}                       }
+                
+
                 NavigationLink(destination: CurrentBridgeView()){
                     ZStack(alignment: .init(horizontal: .center, vertical: .bottom)){
                         Image ("Card2")
@@ -83,7 +105,9 @@ struct ContentView: View {
                     Text("Academy Arcade")
                         .font(.system(size: 25))
                         .fontWeight(.semibold)
-                        .foregroundColor(.black)
+                        .foregroundColor(
+                            colorScheme == .dark ? Color.white : Color.black
+                        )
                 }.padding(.trailing,150)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10) {
@@ -112,7 +136,9 @@ struct ContentView: View {
                     Text("Welcome Back \(settingsViewModel.userName)")
                         .font(.system(size: 25))
                         .fontWeight(.semibold)
-                        .foregroundColor(.black)
+                        .foregroundColor(
+                            colorScheme == .dark ? Color.white : Color.black
+                        )
                         .offset(y:25)
                         .offset(x:15)
                 },
@@ -121,8 +147,9 @@ struct ContentView: View {
                         Image(systemName: "person.circle.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
-                            .foregroundColor(.black)
-                            .offset(y:25)
+                            .foregroundColor(
+                                colorScheme == .dark ? Color.white : Color.black
+                            )                            .offset(y:25)
                             .offset(x:-15)
                         
                     }
@@ -172,6 +199,6 @@ func createDate(year: Int, month: Int, day: Int, hour: Int, minute: Int, second:
 }
 }
 #Preview {
-    ContentView()
+    ContentView(buttonTapped: false)
         .modelContainer(for: Item.self, inMemory: true)
 }

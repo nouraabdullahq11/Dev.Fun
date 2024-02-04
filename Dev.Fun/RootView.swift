@@ -15,7 +15,7 @@ struct RootView: View {
         ZStack {
             NavigationStack {
                 //SettingsView(showSignInView: $showSignInView)
-            ContentView()
+                ContentView(buttonTapped: false)
             }
         }
         .task {

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AuthenticationView: View {
     @Binding var showSignInView: Bool
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         VStack(spacing: 47){
             VStack(spacing: 47){
@@ -23,10 +24,16 @@ struct AuthenticationView: View {
                 
                 Text("Sign in with Learner Email")
                     .font(.headline)
-                    .foregroundColor(.white)
+                   
                     .frame(height: 40)
                     .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    .background(Color.black)
+//.background(Color.black)
+                    .background(
+                                        colorScheme == .dark ? Color.white : Color.black
+                                    )
+                                    .foregroundColor(
+                                        colorScheme == .dark ? Color.black : Color.white
+                                    )
                     .cornerRadius(15)
                 
             }
