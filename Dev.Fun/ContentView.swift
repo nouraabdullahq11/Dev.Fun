@@ -130,6 +130,8 @@ struct ContentView: View {
                     // Initial set of images when the view appears
                     imagesToDisplay = getImagesToDisplay()
                 }
+            }.onAppear{
+                settingsViewModel.fetchUserInfo()
             }
             .navigationBarItems(
                 leading: HStack {
