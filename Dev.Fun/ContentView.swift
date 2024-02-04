@@ -31,25 +31,30 @@ struct ContentView: View {
         NavigationView{
             VStack{
                 if buttonTapped {
-                    Text("✨ Good Job \(settingsViewModel.userName)✨")
-                        .font(
-                            Font.custom("SF Pro", size: 13)
-                                .weight(.bold))
+                    Text("✨Good Job \(settingsViewModel.userName)✨")
+//                        .font(
+//                            Font.custom("SF Pro", size: 10)
+//                                .weight(.bold))
+                        .font(.system(size: 15))
+
                     // Adjust font size
-                        .foregroundColor(color)
+                        .foregroundColor(Color("let'sRockColor"))
                         .scaleEffect(scale)
                         .frame(width: 346, height: 62, alignment: .center)
-                        .background(Color(red: 0.04, green: 0.04, blue: 0.04))                .cornerRadius(15)
+                        .background(Color("let'sRockColorBg")) 
+                        .cornerRadius(15)
                         .onAppear {
                             withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
                                 scale = 1.2
                                 
                             }}
                        } else {
-                           Text("✨ let's rock \(settingsViewModel.userName) ✨")
-                               .font(
-                                   Font.custom("SF Pro", size: 13)
-                                       .weight(.bold))
+                           Text("let's rock \(settingsViewModel.userName)🚀")
+//                               .font(
+//                                   Font.custom("SF Pro", size: 10)
+//                                       .weight(.bold))
+                               .font(.system(size: 15))
+
                            // Adjust font size
                                .foregroundColor(Color("let'sRockColor"))
                                .scaleEffect(scale)
@@ -58,7 +63,7 @@ struct ContentView: View {
                                .onAppear {
                                    withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
                                        scale = 1.2
-                                       color = .white
+//                                       color = .white
                                    }}                       }
                 
 
@@ -135,7 +140,7 @@ struct ContentView: View {
                 leading: HStack {
                     Text("Welcome Back \(settingsViewModel.userName)")
                         .font(.system(size: 25))
-                        .fontWeight(.semibold)
+//                        .fontWeight(.semibold)
                         .foregroundColor(
                             colorScheme == .dark ? Color.white : Color.black
                         )

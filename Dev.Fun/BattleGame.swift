@@ -13,14 +13,14 @@ struct BattleGame: View {
             ZStack {
                 Color("DarkModeRock")
                     .ignoresSafeArea()
-
+                
                 VStack(alignment: .leading, spacing: 0) {
                     Text("\nBrainiac\nBattle ")
                         .font(
                             Font.custom("SF Pro", size: 46)
                                 .weight(.bold)
                         )
-                       // .kerning(0.65566)
+                    // .kerning(0.65566)
                         .foregroundColor(.white)
                     
                     Text("Let's put our knowledge to the test and have a little group quiz about what we learned in our last sessions. Fire away with your questions!\n")
@@ -37,7 +37,7 @@ struct BattleGame: View {
                             .cornerRadius(12)
                         
                         HStack {
-                            NavigationLink(destination: Rock().navigationBarBackButtonHidden(true)) {
+                            NavigationLink(destination: Rock()) {
                                 Text("Play")
                                     .foregroundColor(.black)
                                     .bold()
@@ -63,8 +63,12 @@ struct BattleGame: View {
                 .padding(.bottom, 140)
             }
             .frame(width: 393, height: 852)
-        }.accentColor(.white)
+
+        }
         .navigationBarBackButtonHidden(false)
+            .accentColor(.white)
+        
+        
     }
 }
 
