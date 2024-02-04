@@ -43,7 +43,8 @@ struct CurrentBridgeView: View {
                     HStack(spacing: 10) {
                         ForEach(0..<images.count, id: \.self) { index in
                             Circle()
-                                .fill(Color(red: 0, green: 0.00, blue: 0.00))
+                           
+                                .fill(Color("IndicatorColor"))
                                 .frame(width: 10, height: 10)
                                 .opacity(currentIndex == index ? 1.0 : 0.5)
                         }

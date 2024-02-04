@@ -30,8 +30,6 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             VStack{
-                
-                
                 if buttonTapped {
                     Text("✨ Good Job \(settingsViewModel.userName) ✨")
                         .font(
@@ -45,7 +43,7 @@ struct ContentView: View {
                         .onAppear {
                             withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
                                 scale = 1.2
-                                color = .white
+                                
                             }}
                        } else {
                            Text("✨ let's rock \(settingsViewModel.userName) ✨")
@@ -53,10 +51,10 @@ struct ContentView: View {
                                    Font.custom("SF Pro", size: 13)
                                        .weight(.bold))
                            // Adjust font size
-                               .foregroundColor(color)
+                               .foregroundColor(Color("let'sRockColor"))
                                .scaleEffect(scale)
                                .frame(width: 346, height: 62, alignment: .center)
-                               .background(Color(red: 0.04, green: 0.04, blue: 0.04))                .cornerRadius(15)
+                               .background(Color("let'sRockColorBg"))                .cornerRadius(15)
                                .onAppear {
                                    withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
                                        scale = 1.2

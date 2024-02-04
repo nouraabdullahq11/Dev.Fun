@@ -17,6 +17,7 @@ struct AuthenticationView: View {
                 Image("devFun")
                     .resizable()
                     .frame(width: 194.45946, height: 46.39949)
+                
             }
             NavigationLink{
                 SigninEmailView(showSignInView: $showSignInView).navigationBarBackButtonHidden(true)

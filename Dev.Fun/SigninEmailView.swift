@@ -70,10 +70,10 @@ struct SigninEmailView: View {
     var body: some View {
         VStack{
             VStack(alignment: .leading){
-                TextField("Name...", text: $viewModel.firstName)  // Added TextField for capturing the user's name
-                                .padding()
-                                .background(Color.gray.opacity(0.4))
-                                .cornerRadius(10)
+//                TextField("Name...", text: $viewModel.firstName)  // Added TextField for capturing the user's name
+//                                .padding()
+//                                .background(Color.gray.opacity(0.4))
+//                                .cornerRadius(10)
                       Text("Learner Email:")
                 TextField("yourName23 @ twq.idserver.net", text: $viewModel.email )
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -174,30 +174,30 @@ struct SigninEmailView: View {
                            .padding()
                            .disabled(viewModel.email.isEmpty || viewModel.password.isEmpty) // Disable if email or password is empty
 
-                           Button {
-                               Task{
-                                   do{
-                                       guard !viewModel.email.isEmpty, !viewModel.password.isEmpty, !viewModel.firstName.isEmpty else {
-                                           print("Email, password, or name is empty.")
-                                           return
-                                       }
-
-                                       try await viewModel.signUp()
-                                       showSignInView = false
-                                   } catch {
-                                       print(error)
-                                   }
-                               }
-                           }label: {
-                               Text("Sign Up")
-                                   .font(.headline)
-                                   .foregroundColor(.white)
-                                   .frame(height: 55)
-                                   .frame(maxWidth: .infinity)
-                                   .background(Color.blue)
-                                   .cornerRadius(10)
-                           }
-                           .disabled(viewModel.email.isEmpty || viewModel.password.isEmpty || viewModel.firstName.isEmpty) // Disable if email, password, or name is empty
+//                           Button {
+//                               Task{
+//                                   do{
+//                                       guard !viewModel.email.isEmpty, !viewModel.password.isEmpty, !viewModel.firstName.isEmpty else {
+//                                           print("Email, password, or name is empty.")
+//                                           return
+//                                       }
+//
+//                                       try await viewModel.signUp()
+//                                       showSignInView = false
+//                                   } catch {
+//                                       print(error)
+//                                   }
+//                               }
+//                           }label: {
+//                               Text("Sign Up")
+//                                   .font(.headline)
+//                                   .foregroundColor(.white)
+//                                   .frame(height: 55)
+//                                   .frame(maxWidth: .infinity)
+//                                   .background(Color.blue)
+//                                   .cornerRadius(10)
+//                           }
+//                           .disabled(viewModel.email.isEmpty || viewModel.password.isEmpty || viewModel.firstName.isEmpty) // Disable if email, password, or name is empty
             
             Button {
                             isShowingForgetPasswordSheet = true
