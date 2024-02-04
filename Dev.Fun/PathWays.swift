@@ -189,7 +189,7 @@ struct AnswerButton: View {
                 .padding()
                 .foregroundColor(isSelected ? .white : .black)
                 .frame(width: 324, height: 45)
-                .background(isSelected ? Color.black : Color(red: 0.92, green: 0.92, blue: 0.92))
+                .background(isSelected ? Color.colorpath : Color(red: 0.92, green: 0.92, blue: 0.92))
                 .cornerRadius(20)
         }
         .padding(.horizontal, 5)
@@ -215,7 +215,7 @@ struct ResultView: View {
             if designPoints > frontendPoints && designPoints > backendPoints {
                 
                 
-                Text("You are a Designer!")
+              //  Text("You are a Designer!")
                     
                     Image("image1")
                         .frame(width: 193, height: 193)
@@ -240,25 +240,25 @@ struct ResultView: View {
                         .frame(width: 349, alignment: .top)
                         
                         
-                        Text("Go to Dieyah Room to learn more !")
-                        .font(
-                        Font.custom("SF Pro", size: 15)
-                        .weight(.bold)
-                        )
-                        .kerning(0.65566)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.white)
-
-                        .frame(width: 288, height: 28, alignment: .center)
-
-                        
+//                        Text("Go to Dieyah Room to learn more !")
+//                        .font(
+//                        Font.custom("SF Pro", size: 15)
+//                        .weight(.bold)
+//                        )
+//                        .kerning(0.65566)
+//                        .multilineTextAlignment(.center)
+//                        .foregroundColor(.white)
+//
+//                        .frame(width: 288, height: 28, alignment: .center)
+//
+//                        
 
                         
                     }
 
                 
             } else if frontendPoints > designPoints && frontendPoints > backendPoints {
-                Text("You are a Frontend Developer!")
+              //  Text("You are a Frontend Developer!")
                
                     Image("22")
                         .frame(width: 193, height: 193)
@@ -283,17 +283,17 @@ struct ResultView: View {
                         .frame(width: 349, alignment: .top)
                         
                         
-                        Text("Go to the line Room to learn more !")
-                        .font(
-                        Font.custom("SF Pro", size: 15)
-                        .weight(.bold)
-                        )
-                        .kerning(0.65566)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.white)
-
-                        .frame(width: 288, height: 28, alignment: .center)
-                        
+//                        Text("Go to the line Room to learn more !")
+//                        .font(
+//                        Font.custom("SF Pro", size: 15)
+//                        .weight(.bold)
+//                        )
+//                        .kerning(0.65566)
+//                        .multilineTextAlignment(.center)
+//                        .foregroundColor(.white)
+//
+//                        .frame(width: 288, height: 28, alignment: .center)
+//                        
                         
 
                         
@@ -302,7 +302,7 @@ struct ResultView: View {
                 
                 
             } else if backendPoints > designPoints && backendPoints > frontendPoints {
-                Text("You are a Backend Developer!")
+              //  Text("You are a Backend Developer!")
                
                     Image("Image")
                         .frame(width: 193, height: 193)
@@ -325,27 +325,28 @@ struct ResultView: View {
 
                         .frame(width: 349, alignment: .top)
                         
-                        Text("Go to  Redsea Room to learn more !")
-                        .font(
-                        Font.custom("SF Pro", size: 15)
-                        .weight(.bold)
-                        )
-                        .kerning(0.65566)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.white)
+//                        Text("Go to  Redsea Room to learn more !")
+//                        .font(
+//                        Font.custom("SF Pro", size: 15)
+//                        .weight(.bold)
+//                        )
+//                        .kerning(0.65566)
+//                        .multilineTextAlignment(.center)
+//                        .foregroundColor(.white)
+//
+//                        .frame(width: 288, height: 28, alignment: .center)
+//                        
+//                        
+//
+//                        
 
-                        .frame(width: 288, height: 28, alignment: .center)
-                        
-                        
-
-                        
                     }
                 
                 
                 
                 
             } else {
-                Text("You have a diverse skillset!")
+            //    Text("You have a diverse skillset!")
                 
                 
                 
@@ -372,17 +373,17 @@ struct ResultView: View {
 
                     .frame(width: 349, alignment: .top)
                     
-                    
-                    Text("Go to  Redsea Room to learn more !")
-                    .font(
-                    Font.custom("SF Pro", size: 15)
-                    .weight(.bold)
-                    )
-                    .kerning(0.65566)
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.white)
-
-                    .frame(width: 288, height: 28, alignment: .center)
+//                    
+//                    Text("Go to  Redsea Room to learn more !")
+//                    .font(
+//                    Font.custom("SF Pro", size: 15)
+//                    .weight(.bold)
+//                    )
+//                    .kerning(0.65566)
+//                    .multilineTextAlignment(.center)
+//                    .foregroundColor(.white)
+//
+//                    .frame(width: 288, height: 28, alignment: .center)
                     
                     
 

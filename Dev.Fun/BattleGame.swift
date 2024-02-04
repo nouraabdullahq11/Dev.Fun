@@ -63,7 +63,8 @@ struct BattleGame: View {
                 .padding(.bottom, 140)
             }
             .frame(width: 393, height: 852)
-        }
+        }.accentColor(.white)
+        .navigationBarBackButtonHidden(false)
     }
 }
 

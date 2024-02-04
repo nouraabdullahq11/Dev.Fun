@@ -152,8 +152,8 @@ struct SettingsView: View {
 
 
 //                Spacer()
-                Text("User ID: \(settingsViewModel.userID)")
-                Text("User Name: \(settingsViewModel.userName)")
+//                Text("User ID: \(settingsViewModel.userID)")
+//                Text("User Name: \(settingsViewModel.userName)")
 
 //                Button("Log out") {
 //                    Task {

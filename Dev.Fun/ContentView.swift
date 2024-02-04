@@ -31,7 +31,7 @@ struct ContentView: View {
         NavigationView{
             VStack{
                 if buttonTapped {
-                    Text("✨ Good Job \(settingsViewModel.userName) ✨")
+                    Text("✨ Good Job \(settingsViewModel.userName)✨")
                         .font(
                             Font.custom("SF Pro", size: 13)
                                 .weight(.bold))
